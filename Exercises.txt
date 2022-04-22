@@ -1,0 +1,38 @@
+Exercise 04 - New note
+
+Creation of a similar diagram depicting the situation where the user creates a new note on page https://studies.cs.helsinki.fi/exampleapp/notes when writing something into the text field and clicking the submit button.
+
+Here, apart of sending GET requests to the server, the browser also sends a POST request by creating a new note:
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_notes
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+
+when browser starts executing the javascript file, this one starts requests json data from server:
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+
+Exercise 05: Single Page app
+
+when the users visit our SPA, our application looks like the traditional web app, this is the diagram, like the normal diagram at the very beginning. The browser sends GET requests and receives html, css, js, json data files:
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+The difference from the tradional web app will be found in the next exercise
+
+Exercise 06: New note for the SPA
+
+When the users create a new note in our SPA, the browser send only one request (POST) to the server instead of sending all of the previous GET requests again. Indeed, in our SPA, the browser only sends them once when the page is loading, the server is a json data:
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: json data ("content-type: application/json")
